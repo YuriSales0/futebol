@@ -58,6 +58,12 @@ export async function signUp(formData: SignUpFormData) {
     })
   }
 
+  // Create user profile with role
+  await supabase.from('user_profiles').insert({
+    auth_user_id: authData.user.id,
+    role: 'player',
+  })
+
   // Initialize empty scores
   await supabase.from('confidence_scores').insert({ player_id: player.id })
   await supabase.from('gie_scores').insert({ player_id: player.id })

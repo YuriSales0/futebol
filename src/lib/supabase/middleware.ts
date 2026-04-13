@@ -38,7 +38,10 @@ export async function updateSession(request: NextRequest) {
     request.nextUrl.pathname.startsWith('/videos') ||
     request.nextUrl.pathname.startsWith('/ranking') ||
     request.nextUrl.pathname.startsWith('/perfil') ||
-    request.nextUrl.pathname.startsWith('/configuracoes')
+    request.nextUrl.pathname.startsWith('/configuracoes') ||
+    request.nextUrl.pathname.startsWith('/admin') ||
+    request.nextUrl.pathname.startsWith('/catalogo') ||
+    request.nextUrl.pathname.startsWith('/shortlists')
 
   if (isProtectedRoute && !user) {
     const url = request.nextUrl.clone()
