@@ -4,11 +4,11 @@ import { useState } from 'react'
 import { deleteVideo } from '@/actions/video'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { formatFileSize, formatDate } from '@/lib/utils/formatting'
+import { formatFileSize, formatDate, formatDuration } from '@/lib/utils/formatting'
 import type { Video } from '@/lib/types'
 
 interface VideoCardProps {
-  video: Video
+  video: Video & { thumbnail_url?: string | null }
 }
 
 export function VideoCard({ video }: VideoCardProps) {
@@ -35,27 +35,43 @@ export function VideoCard({ video }: VideoCardProps) {
   }
 
   return (
-    <div className="flex items-start gap-3 p-3 border border-border rounded-lg">
-      <div className="w-16 h-16 bg-gray-200 rounded-md flex items-center justify-center shrink-0">
-        <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
-        </svg>
+    <div className="flex items-start gap-3 p-3 bg-surface border border-border rounded-2xl card-hover">
+      {/* Thumbnail */}
+      <div className="relative w-20 h-14 bg-surface-2 rounded-lg flex items-center justify-center shrink-0 overflow-hidden">
+        {video.thumbnail_url ? (
+          <img
+            src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/authenticated/videos/${video.thumbnail_url}`}
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <svg className="w-6 h-6 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+          </svg>
+        )}
+        {video.duration_seconds && (
+          <span className="absolute bottom-0.5 right-0.5 bg-black/80 text-white text-[9px] font-mono px-1 rounded">
+            {formatDuration(video.duration_seconds)}
+          </span>
+        )}
       </div>
+
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium truncate">{video.original_filename}</p>
-        <div className="flex items-center gap-2 mt-1">
+        <p className="text-sm font-semibold truncate">{video.original_filename}</p>
+        <div className="flex items-center gap-2 mt-1 flex-wrap">
           <Badge variant={statusColors[video.status]} size="sm">
             {statusLabels[video.status]}
           </Badge>
-          <span className="text-xs text-muted">{formatFileSize(video.file_size_bytes)}</span>
+          <span className="text-[10px] text-muted font-mono">{formatFileSize(video.file_size_bytes)}</span>
         </div>
         {video.match_description && (
-          <p className="text-xs text-muted mt-1 truncate">{video.match_description}</p>
+          <p className="text-[10px] text-muted mt-1 truncate">{video.match_description}</p>
         )}
         {video.match_date && (
-          <p className="text-xs text-muted">{formatDate(video.match_date)}</p>
+          <p className="text-[10px] text-muted">{formatDate(video.match_date)}</p>
         )}
       </div>
+
       <Button
         variant="ghost"
         size="sm"
