@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --primary: #059669;
+  --primary-dark: #047857;
+  --primary-light: #10b981;
+  --secondary: #1e40af;
+  --accent: #f59e0b;
+  --surface: #f8fafc;
+  --border: #e2e8f0;
+  --muted: #94a3b8;
+  --error: #ef4444;
+  --success: #22c55e;
+
+  /* Dimension colors */
+  --dim-scanning: #3B82F6;
+  --dim-decision: #8B5CF6;
+  --dim-off-ball: #10B981;
+  --dim-orientation: #F59E0B;
+  --dim-anticipation: #EF4444;
+  --dim-resilience: #F97316;
+  --dim-communication: #06B6D4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-light: var(--primary-light);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-error: var(--error);
+  --color-success: var(--success);
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', monospace;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Safe area for mobile bottom nav */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Minimum touch target */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
