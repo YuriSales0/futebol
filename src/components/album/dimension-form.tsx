@@ -98,7 +98,7 @@ export function DimensionForm({ dimension, playerId, videos }: DimensionFormProp
   return (
     <div className="space-y-6">
       {error && (
-        <div className="bg-red-50 text-error text-sm p-3 rounded-lg">{error}</div>
+        <div className="bg-error/10 border border-error/20 text-error text-sm p-3 rounded-xl">{error}</div>
       )}
 
       {/* Step 1: Select video */}

@@ -24,8 +24,8 @@ export default async function VideoUploadPage() {
   return (
     <div>
       <h1 className="text-xl font-bold mb-4">Enviar Vídeo</h1>
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
-        <p className="text-sm text-blue-800">
+      <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-3 mb-4">
+        <p className="text-sm text-blue-400">
           Envie vídeos de <strong>jogos reais</strong> (não treinos). Quanto mais completo o jogo, maior sua confiança no ranking.
         </p>
       </div>

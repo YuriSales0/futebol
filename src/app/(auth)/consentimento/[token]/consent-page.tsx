@@ -32,7 +32,7 @@ export function ConsentPage({ token }: { token: string }) {
 
   if (status === 'approved') {
     return (
-      <div className="bg-white rounded-xl border border-border p-6 text-center">
+      <div className="bg-surface rounded-2xl border border-border p-6 text-center">
         <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
           <svg className="w-8 h-8 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -49,7 +49,7 @@ export function ConsentPage({ token }: { token: string }) {
 
   if (status === 'rejected') {
     return (
-      <div className="bg-white rounded-xl border border-border p-6 text-center">
+      <div className="bg-surface rounded-2xl border border-border p-6 text-center">
         <h2 className="text-xl font-semibold mb-2">Consentimento Negado</h2>
         <p className="text-muted text-sm">
           O perfil do jogador não será ativado.
@@ -60,18 +60,18 @@ export function ConsentPage({ token }: { token: string }) {
   }
 
   return (
-    <div className="bg-white rounded-xl border border-border p-6 space-y-4">
+    <div className="bg-surface rounded-2xl border border-border p-6 space-y-4">
       <h2 className="text-xl font-semibold text-center">Consentimento Parental</h2>
 
       {status === 'error' && (
-        <div className="bg-red-50 text-error text-sm p-3 rounded-lg">
+        <div className="bg-error/10 border border-error/20 text-error text-sm p-3 rounded-xl">
           {errorMsg}
         </div>
       )}
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm space-y-2">
-        <p className="font-medium text-blue-800">O que é a GIE?</p>
-        <p className="text-blue-700">
+      <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 text-sm space-y-2">
+        <p className="font-medium text-blue-400">O que é a GIE?</p>
+        <p className="text-blue-300">
           A GIE (Game Intelligence Engine) é uma plataforma gratuita onde jovens jogadores
           de futebol criam um perfil com vídeos de jogos reais para serem vistos por clubes e scouts.
         </p>

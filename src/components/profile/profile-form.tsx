@@ -66,7 +66,7 @@ export function ProfileForm({ player }: ProfileFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {error && (
-        <div className="bg-red-50 text-error text-sm p-3 rounded-lg">{error}</div>
+        <div className="bg-error/10 border border-error/20 text-error text-sm p-3 rounded-xl">{error}</div>
       )}
 
       <Input id="fullName" name="fullName" label="Nome completo" defaultValue={player.full_name} required />

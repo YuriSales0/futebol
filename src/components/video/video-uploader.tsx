@@ -149,7 +149,7 @@ export function VideoUploader({ playerId, onComplete }: VideoUploaderProps) {
   return (
     <div className="space-y-4">
       {error && (
-        <div className="bg-red-50 text-error text-sm p-3 rounded-lg">{error}</div>
+        <div className="bg-error/10 border border-error/20 text-error text-sm p-3 rounded-xl">{error}</div>
       )}
 
       <div>

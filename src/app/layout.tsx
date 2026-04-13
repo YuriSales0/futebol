@@ -9,6 +9,12 @@ export const metadata: Metadata = {
   description:
     "A plataforma mais eficiente para jovens talentos do futebol brasileiro. Monte seu álbum de figurinhas com as 7 dimensões da inteligência de jogo.",
   keywords: ["futebol", "talentos", "scouting", "inteligência de jogo", "base", "jovens"],
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "GIE",
+  },
 };
 
 export const viewport: Viewport = {
