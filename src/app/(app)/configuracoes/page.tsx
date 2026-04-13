@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { signOut } from '@/actions/auth'
 import { deleteAccount } from '@/actions/player'
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
 import { useRouter } from 'next/navigation'
 
 export default function SettingsPage() {
@@ -27,26 +26,31 @@ export default function SettingsPage() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-xl font-bold">Configurações</h1>
+      <h1 className="text-xl font-black">Configurações</h1>
 
-      <Card variant="bordered">
-        <h3 className="font-semibold mb-3">Conta</h3>
+      <div className="bg-surface border border-border rounded-2xl p-5">
+        <h3 className="font-bold mb-3">Conta</h3>
         <form action={signOut}>
           <Button variant="outline" type="submit" className="w-full">
             Sair da conta
           </Button>
         </form>
-      </Card>
+      </div>
 
-      <Card variant="bordered" className="border-red-200">
-        <h3 className="font-semibold text-error mb-2">Zona de perigo</h3>
-        <p className="text-sm text-muted mb-3">
+      <div className="bg-surface border border-error/20 rounded-2xl p-5">
+        <h3 className="font-bold text-error mb-2">Zona de perigo</h3>
+        <p className="text-xs text-muted mb-3 leading-relaxed">
           Ao deletar sua conta, todos os seus dados, vídeos e dimensões serão removidos permanentemente.
+          Essa ação é irreversível.
         </p>
         <Button variant="danger" onClick={handleDeleteAccount} loading={deleting} className="w-full">
           Deletar minha conta
         </Button>
-      </Card>
+      </div>
+
+      <div className="text-center pt-4">
+        <p className="text-[10px] text-muted/50">GIE v1.0 — Game Intelligence Engine</p>
+      </div>
     </div>
   )
 }
