@@ -8,18 +8,18 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className = '', variant = 'primary', size = 'md', loading, disabled, children, ...props }, ref) => {
-    const base = 'inline-flex items-center justify-center font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed touch-target'
+    const base = 'inline-flex items-center justify-center font-semibold rounded-xl transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-background disabled:opacity-50 disabled:cursor-not-allowed touch-target'
 
     const variants = {
-      primary: 'bg-primary text-white hover:bg-primary-dark focus:ring-primary',
-      secondary: 'bg-secondary text-white hover:bg-blue-900 focus:ring-secondary',
-      outline: 'border border-border text-foreground hover:bg-surface focus:ring-primary',
+      primary: 'bg-primary text-background hover:bg-primary-dark focus:ring-primary shadow-lg shadow-primary/20',
+      secondary: 'bg-secondary text-white hover:bg-purple-600 focus:ring-secondary shadow-lg shadow-secondary/20',
+      outline: 'border border-border text-foreground hover:bg-surface hover:border-muted focus:ring-primary',
       ghost: 'text-foreground hover:bg-surface focus:ring-primary',
-      danger: 'bg-error text-white hover:bg-red-600 focus:ring-error',
+      danger: 'bg-error text-white hover:bg-red-600 focus:ring-error shadow-lg shadow-error/20',
     }
 
     const sizes = {
-      sm: 'text-sm px-3 py-1.5',
+      sm: 'text-xs px-3 py-1.5',
       md: 'text-sm px-4 py-2.5',
       lg: 'text-base px-6 py-3',
     }

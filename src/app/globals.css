@@ -1,27 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
-  --primary: #059669;
-  --primary-dark: #047857;
-  --primary-light: #10b981;
-  --secondary: #1e40af;
-  --accent: #f59e0b;
-  --surface: #f8fafc;
-  --border: #e2e8f0;
-  --muted: #94a3b8;
-  --error: #ef4444;
-  --success: #22c55e;
+  --background: #0a0f1a;
+  --foreground: #e8edf5;
+  --primary: #00e676;
+  --primary-dark: #00c853;
+  --primary-light: #69f0ae;
+  --secondary: #7c4dff;
+  --accent: #ffab00;
+  --surface: #111827;
+  --surface-2: #1a2332;
+  --border: #1e293b;
+  --muted: #64748b;
+  --error: #ff5252;
+  --success: #00e676;
 
   /* Dimension colors */
-  --dim-scanning: #3B82F6;
-  --dim-decision: #8B5CF6;
-  --dim-off-ball: #10B981;
-  --dim-orientation: #F59E0B;
-  --dim-anticipation: #EF4444;
-  --dim-resilience: #F97316;
-  --dim-communication: #06B6D4;
+  --dim-scanning: #448aff;
+  --dim-decision: #b388ff;
+  --dim-off-ball: #69f0ae;
+  --dim-orientation: #ffd740;
+  --dim-anticipation: #ff5252;
+  --dim-resilience: #ffab40;
+  --dim-communication: #18ffff;
 }
 
 @theme inline {
@@ -33,6 +34,7 @@
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
   --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-border: var(--border);
   --color-muted: var(--muted);
   --color-error: var(--error);
@@ -49,6 +51,103 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Glow effects */
+.glow-green {
+  box-shadow: 0 0 20px rgba(0, 230, 118, 0.3), 0 0 60px rgba(0, 230, 118, 0.1);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(124, 77, 255, 0.3), 0 0 60px rgba(124, 77, 255, 0.1);
+}
+
+.glow-text {
+  text-shadow: 0 0 40px rgba(0, 230, 118, 0.5);
+}
+
+/* Animated gradient border */
+.gradient-border {
+  position: relative;
+  background: var(--surface);
+  border-radius: 16px;
+}
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 17px;
+  padding: 1px;
+  background: linear-gradient(135deg, #00e676, #7c4dff, #00e676);
+  background-size: 200% 200%;
+  animation: gradient-rotate 4s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+@keyframes gradient-rotate {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Pulse animation for CTA */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 230, 118, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(0, 230, 118, 0.7), 0 0 80px rgba(0, 230, 118, 0.3); }
+}
+
+.pulse-cta {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Shimmer for Diamond badge */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.diamond-shimmer {
+  background: linear-gradient(90deg, #18ffff 0%, #fff 50%, #18ffff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Card hover lift */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Score ring animation */
+@keyframes score-fill {
+  from { stroke-dashoffset: 283; }
+}
+
+/* Field pattern background */
+.field-pattern {
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(0, 230, 118, 0.03) 0%, transparent 70%),
+    linear-gradient(rgba(0, 230, 118, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 230, 118, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px, 40px 40px;
+}
+
 /* Safe area for mobile bottom nav */
 .pb-safe {
   padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -58,4 +157,16 @@ body {
 .touch-target {
   min-height: 44px;
   min-width: 44px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
 }

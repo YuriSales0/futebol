@@ -25,11 +25,11 @@ export function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-xl border border-border p-6 space-y-4">
-      <h2 className="text-xl font-semibold text-center">Entrar</h2>
+    <form onSubmit={handleSubmit} className="bg-surface rounded-2xl border border-border p-6 space-y-4">
+      <h2 className="text-xl font-bold text-center">Entrar</h2>
 
       {error && (
-        <div className="bg-red-50 text-error text-sm p-3 rounded-lg">
+        <div className="bg-error/10 border border-error/20 text-error text-sm p-3 rounded-xl">
           {error}
         </div>
       )}

@@ -1,5 +1,5 @@
 interface ProgressProps {
-  value: number // 0-100
+  value: number
   className?: string
   color?: string
   size?: 'sm' | 'md' | 'lg'
@@ -23,7 +23,7 @@ export function Progress({
 
   return (
     <div className={`w-full ${className}`}>
-      <div className={`w-full bg-gray-200 rounded-full overflow-hidden ${sizes[size]}`}>
+      <div className={`w-full bg-surface-2 rounded-full overflow-hidden ${sizes[size]}`}>
         <div
           className={`${color} ${sizes[size]} rounded-full transition-all duration-500 ease-out`}
           style={{ width: `${clamped}%` }}

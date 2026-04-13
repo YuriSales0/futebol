@@ -12,57 +12,80 @@ export function DimensionCard({ dimension, filled, selfScore, description }: Dim
   return (
     <Link
       href={`/album/${dimension.code}`}
-      className={`block rounded-xl border-2 p-4 transition-all hover:shadow-md ${
+      className={`group block relative rounded-2xl p-4 transition-all card-hover overflow-hidden ${
         filled
-          ? 'border-transparent bg-white shadow-sm'
-          : 'border-dashed border-gray-300 bg-white/50'
+          ? 'bg-surface border border-border'
+          : 'bg-surface-2/50 border border-dashed border-border'
       }`}
     >
-      <div className="flex items-start gap-3">
+      {/* Filled glow accent */}
+      {filled && (
         <div
-          className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-sm shrink-0 ${
-            filled ? '' : 'opacity-40'
-          }`}
+          className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
           style={{ backgroundColor: dimension.color }}
-        >
-          D{dimension.number}
+        />
+      )}
+
+      <div className="flex items-start gap-3">
+        {/* Dimension badge */}
+        <div className="relative">
+          <div
+            className={`w-12 h-12 rounded-xl flex items-center justify-center font-black text-sm shrink-0 transition-all ${
+              filled ? 'text-white shadow-lg' : 'text-white/50'
+            }`}
+            style={{
+              backgroundColor: filled ? dimension.color : `${dimension.color}30`,
+              boxShadow: filled ? `0 4px 20px ${dimension.color}40` : 'none',
+            }}
+          >
+            D{dimension.number}
+          </div>
+          {filled && (
+            <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-primary rounded-full flex items-center justify-center">
+              <svg className="w-3 h-3 text-background" fill="currentColor" viewBox="0 0 24 24">
+                <path fillRule="evenodd" d="M19.916 4.626a.75.75 0 01.208 1.04l-9 13.5a.75.75 0 01-1.154.114l-6-6a.75.75 0 011.06-1.06l5.353 5.353 8.493-12.739a.75.75 0 011.04-.208z" clipRule="evenodd" />
+              </svg>
+            </div>
+          )}
         </div>
+
+        {/* Content */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <h3 className={`font-semibold text-sm ${filled ? '' : 'text-muted'}`}>
+            <h3 className={`font-bold text-sm ${filled ? 'text-foreground' : 'text-muted'}`}>
               {dimension.name}
             </h3>
             {filled && selfScore && (
               <span
-                className="text-xs font-bold px-1.5 py-0.5 rounded text-white"
+                className="text-[10px] font-black px-2 py-0.5 rounded-full text-white"
                 style={{ backgroundColor: dimension.color }}
               >
                 {selfScore}/10
               </span>
             )}
           </div>
-          <p className="text-xs text-muted mt-0.5">
-            {filled ? (
-              <span className="line-clamp-2">{description}</span>
-            ) : (
-              <>
-                {dimension.subtitle}
-                <br />
-                <span className="italic">Ref: {dimension.reference}</span>
-              </>
-            )}
-          </p>
-        </div>
-        <div className="shrink-0">
           {filled ? (
-            <svg className="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 24 24">
-              <path fillRule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
-            </svg>
+            <p className="text-xs text-muted mt-1 line-clamp-2">{description}</p>
           ) : (
-            <svg className="w-5 h-5 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-            </svg>
+            <p className="text-xs text-muted/60 mt-1">
+              {dimension.subtitle}
+              <span className="block text-[10px] mt-0.5" style={{ color: `${dimension.color}80` }}>
+                Ref: {dimension.reference}
+              </span>
+            </p>
           )}
+        </div>
+
+        {/* Arrow */}
+        <div className="shrink-0 mt-1">
+          <svg
+            className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${
+              filled ? 'text-muted' : 'text-border'
+            }`}
+            fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
         </div>
       </div>
     </Link>

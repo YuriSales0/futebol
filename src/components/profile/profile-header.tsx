@@ -15,15 +15,15 @@ export function ProfileHeader({ player, gieScore }: ProfileHeaderProps) {
 
   return (
     <div className="flex items-start gap-4">
-      <div className="w-16 h-16 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold text-xl shrink-0">
+      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 border border-primary/30 flex items-center justify-center text-primary font-black text-xl shrink-0">
         {player.full_name.charAt(0).toUpperCase()}
       </div>
       <div className="flex-1 min-w-0">
-        <h1 className="text-lg font-bold truncate">{player.full_name}</h1>
+        <h1 className="text-lg font-black truncate">{player.full_name}</h1>
         {player.nickname && (
-          <p className="text-sm text-muted truncate">&quot;{player.nickname}&quot;</p>
+          <p className="text-sm text-primary/70 truncate">&quot;{player.nickname}&quot;</p>
         )}
-        <div className="flex flex-wrap gap-1.5 mt-1.5">
+        <div className="flex flex-wrap gap-1.5 mt-2">
           <Badge variant="info">{position?.abbreviation || player.position}</Badge>
           <Badge>{player.city}, {player.state}</Badge>
           <Badge variant="success">{region?.name || player.region}</Badge>
@@ -35,7 +35,7 @@ export function ProfileHeader({ player, gieScore }: ProfileHeaderProps) {
             <span>Pé {player.preferred_foot}</span>
           )}
           {gieScore !== null && gieScore !== undefined && gieScore > 0 && (
-            <span className="font-semibold text-primary">GIE {gieScore.toFixed(1)}</span>
+            <span className="font-black text-primary text-sm">GIE {gieScore.toFixed(1)}</span>
           )}
         </div>
       </div>
